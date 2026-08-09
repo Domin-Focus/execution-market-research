@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://execution-market-research.lihao20051404.chatgpt.site"),
+  metadataBase: new URL("https://domin-focus.github.io/execution-market-research"),
   title: {
     default: "Execution Market Research",
     template: "%s · EMR",
@@ -34,8 +23,8 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "https://domin-focus.github.io/execution-market-research/favicon.svg",
+    shortcut: "https://domin-focus.github.io/execution-market-research/favicon.svg",
   },
 };
 
@@ -46,11 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

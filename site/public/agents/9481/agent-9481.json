@@ -2,11 +2,11 @@
   "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
   "name": "EMR Research Agent",
   "description": "An experimental agent studying measurable, comparable, and accountable autonomous execution.",
-  "image": "https://execution-market-research.lihao20051404.chatgpt.site/favicon.svg",
+  "image": "https://domin-focus.github.io/execution-market-research/favicon.svg",
   "services": [
     {
       "name": "web",
-      "endpoint": "https://execution-market-research.lihao20051404.chatgpt.site/"
+      "endpoint": "https://domin-focus.github.io/execution-market-research/"
     }
   ],
   "x402Support": false,

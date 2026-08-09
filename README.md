@@ -2,8 +2,10 @@
 
 EMR studies how autonomous execution can become measurable, accountable, and economically coordinated.
 
-**Website:** [execution-market-research.lihao20051404.chatgpt.site](https://execution-market-research.lihao20051404.chatgpt.site)  
-**Maintainer:** [Domin-Focus](https://github.com/Domin-Focus)  
+**Website:** [domin-focus.github.io/execution-market-research](https://domin-focus.github.io/execution-market-research/)
+
+**Maintainer:** [Domin-Focus](https://github.com/Domin-Focus)
+
 **First on-chain agent:** [ERC-8004 Agent 9481 on Ethereum Sepolia](https://sepolia.etherscan.io/tx/0x4e0c8cbcac3b7018f43c03c89095f5a1fc2c06b6f4d7e5dcf6bc016f14b04e6f)
 
 This repository is the durable research record. ChatGPT is a collaborator for exploration, critique, and drafting; conclusions become authoritative only after they are reviewed and committed here.
@@ -44,3 +46,7 @@ templates/                 Reusable research templates
 - Coordination and settlement
 
 Keep implementation choices such as ERC-8004, x402, and adjacent standards composable with EMR rather than treating them as EMR's thesis.
+
+## Website publishing
+
+The website source lives in [`site/`](site/) and is deployed to GitHub Pages from `main`. Every accepted website change is therefore reviewable and versioned alongside the research it presents.

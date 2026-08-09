@@ -5,6 +5,7 @@ const txUrl =
   "https://sepolia.etherscan.io/tx/0x4e0c8cbcac3b7018f43c03c89095f5a1fc2c06b6f4d7e5dcf6bc016f14b04e6f";
 const registryUrl =
   "https://sepolia.etherscan.io/address/0x8004A818BFB912233c491871b3d84c89A494BD9e";
+const issueUrl = `${githubUrl}/issues/new?template=research-question.md&title=RQ%3A+`;
 
 export const metadata: Metadata = {
   title: "Execution Market Research",
@@ -24,6 +25,7 @@ export default function Home() {
         </a>
         <div className="nav-links">
           <a href="#research">Research</a>
+          <a href="#questions">Questions</a>
           <a href="#experiment">Experiment</a>
           <a href="#agent">Agent 9481</a>
           <a className="nav-cta" href={githubUrl} target="_blank" rel="noreferrer">
@@ -73,6 +75,50 @@ export default function Home() {
             <p>Did the agent improve the outcome relative to a baseline—and should the next task route to it?</p>
           </article>
         </div>
+        <div className="artifact-grid" aria-label="Research artifacts">
+          <a href={`${githubUrl}/blob/main/papers/paper-0.md`} target="_blank" rel="noreferrer">
+            <span className="artifact-type">Paper 0</span>
+            <h3>The economics of autonomous execution</h3>
+            <p>Define the object of study and the gap between intelligence, authority, and accountable action.</p>
+            <strong>Read working draft <Arrow /></strong>
+          </a>
+          <a href={`${githubUrl}/blob/main/specifications/execution-receipt-v0.1.md`} target="_blank" rel="noreferrer">
+            <span className="artifact-type">Specification 001</span>
+            <h3>Execution receipt v0.1</h3>
+            <p>A minimum evidence structure connecting task, authority, action, outcome, and evaluation.</p>
+            <strong>Inspect specification <Arrow /></strong>
+          </a>
+          <a href={`${githubUrl}/blob/main/research/experiments/001-task-backed-reputation.md`} target="_blank" rel="noreferrer">
+            <span className="artifact-type">Experiment 001</span>
+            <h3>Task-backed reputation</h3>
+            <p>Test whether grounded contribution evidence improves future agent selection.</p>
+            <strong>Review experiment <Arrow /></strong>
+          </a>
+          <a href={`${githubUrl}/blob/main/BACKLOG.md`} target="_blank" rel="noreferrer">
+            <span className="artifact-type">Research backlog</span>
+            <h3>Questions before solutions</h3>
+            <p>The prioritized set of falsifiable questions guiding the EMR research program.</p>
+            <strong>Explore backlog <Arrow /></strong>
+          </a>
+        </div>
+      </section>
+
+      <section className="section shell questions" id="questions">
+        <div className="section-heading">
+          <p className="kicker">Open questions</p>
+          <div>
+            <h2>What must be true?</h2>
+            <p className="section-intro">EMR advances one bounded question at a time. Claims move into papers only after evidence, challenge, and review.</p>
+          </div>
+        </div>
+        <ol className="question-list">
+          <li><span>Q01</span><p>What minimum evidence makes two autonomous executions economically comparable?</p></li>
+          <li><span>Q02</span><p>Does task-backed contribution history outperform aggregate reputation when selecting agents?</p></li>
+          <li><span>Q03</span><p>Which execution evidence belongs on-chain, and which must remain private or off-chain?</p></li>
+        </ol>
+        <a className="button secondary question-cta" href={issueUrl} target="_blank" rel="noreferrer">
+          Propose one research question <Arrow />
+        </a>
       </section>
 
       <section className="section shell experiment" id="experiment">
@@ -125,6 +171,25 @@ export default function Home() {
           </p>
           <a className="text-link" href={`${githubUrl}/blob/main/papers/paper-0.md`} target="_blank" rel="noreferrer">
             Read the working draft <Arrow />
+          </a>
+        </div>
+      </section>
+
+      <section className="section shell source-of-truth">
+        <div>
+          <p className="kicker">Built in public</p>
+          <h2>GitHub is the research ledger.</h2>
+        </div>
+        <div className="ledger-copy">
+          <p>Ideas begin as issues. Evidence lives in versioned notes and experiments. Decisions are recorded. Stable findings graduate into papers.</p>
+          <ul>
+            <li><span>01</span> One question per issue</li>
+            <li><span>02</span> Evidence before conclusion</li>
+            <li><span>03</span> Versioned, reviewable artifacts</li>
+            <li><span>04</span> Weekly synthesis into papers</li>
+          </ul>
+          <a className="text-link" href={`${githubUrl}/blob/main/GOVERNANCE.md`} target="_blank" rel="noreferrer">
+            Read source-of-truth rules <Arrow />
           </a>
         </div>
       </section>
