@@ -1,0 +1,18 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "EMR Research Agent",
+  "description": "An experimental agent studying measurable, comparable, and accountable autonomous execution.",
+  "image": "",
+  "services": [],
+  "x402Support": false,
+  "active": true,
+  "registrations": [
+    {
+      "agentId": 9481,
+      "agentRegistry": "eip155:11155111:0x8004A818BFB912233c491871b3d84c89A494BD9e"
+    }
+  ],
+  "supportedTrust": [
+    "reputation"
+  ]
+}

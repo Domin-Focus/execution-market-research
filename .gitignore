@@ -1,0 +1,7 @@
+.DS_Store
+site/node_modules/
+site/.next/
+site/dist/
+site/.wrangler/
+site/.env*
+*.log
