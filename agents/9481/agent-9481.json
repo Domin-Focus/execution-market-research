@@ -6,7 +6,7 @@
   "services": [
     {
       "name": "web",
-      "endpoint": "https://domin-focus.github.io/execution-market-research/"
+      "endpoint": "https://domin-focus.github.io/execution-market-research/agent-9481/"
     }
   ],
   "x402Support": false,

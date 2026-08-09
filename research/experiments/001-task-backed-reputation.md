@@ -36,3 +36,17 @@ The hypothesis is unsupported if contribution-conditioned routing does not mater
 ## First on-chain anchor
 
 ERC-8004 Agent `9481` is registered on Ethereum Sepolia. The first run will connect its identity to an off-chain execution record and a task-backed reputation signal.
+
+## Prototype implementation
+
+The public [Agent 9481 Lab](https://domin-focus.github.io/execution-market-research/agent-9481/) implements the evidence pipeline with three frozen synthetic BTC-risk scenarios and a deterministic policy.
+
+The prototype deliberately excludes live data, asset movement, trading authority, payment, and self-asserted expertise. A browser run produces an EMR receipt containing:
+
+- the task specification and frozen input hash;
+- the ERC-8004 identity reference;
+- explicit simulation-only authority limits;
+- the policy version, result, and output hash;
+- a self-check evaluation with independent evaluation left pending.
+
+The receipt must be downloaded and committed before it becomes durable research evidence.

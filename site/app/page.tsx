@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 const githubUrl = "https://github.com/Domin-Focus/execution-market-research";
 const txUrl =
@@ -27,7 +28,7 @@ export default function Home() {
           <a href="#research">Research</a>
           <a href="#questions">Questions</a>
           <a href="#experiment">Experiment</a>
-          <a href="#agent">Agent 9481</a>
+          <Link href="/agent-9481/">Agent 9481</Link>
           <a className="nav-cta" href={githubUrl} target="_blank" rel="noreferrer">
             GitHub <Arrow />
           </a>
@@ -148,6 +149,7 @@ export default function Home() {
             Our first ERC-8004 identity anchors the experiment to a public agent, owner, registry, and transaction history.
           </p>
           <div className="agent-links">
+            <Link href="/agent-9481/">Open Agent 9481 Lab <Arrow /></Link>
             <a href={txUrl} target="_blank" rel="noreferrer">Registration transaction <Arrow /></a>
             <a href={registryUrl} target="_blank" rel="noreferrer">Identity registry <Arrow /></a>
           </div>

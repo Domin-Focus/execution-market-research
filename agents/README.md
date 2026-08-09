@@ -6,4 +6,8 @@ The directory name is the ERC-8004 `agentId`. Registration files must identify b
 
 Agent `9481` is registered on Ethereum Sepolia. Its canonical registration file is [`9481/agent-9481.json`](9481/agent-9481.json) and its public HTTPS copy is served at:
 
-`https://execution-market-research.lihao20051404.chatgpt.site/agents/9481/agent-9481.json`
+`https://domin-focus.github.io/execution-market-research/agents/9481/agent-9481.json`
+
+The public experiment interface is:
+
+`https://domin-focus.github.io/execution-market-research/agent-9481/`

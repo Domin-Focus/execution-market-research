@@ -8,6 +8,8 @@ EMR studies how autonomous execution can become measurable, accountable, and eco
 
 **First on-chain agent:** [ERC-8004 Agent 9481 on Ethereum Sepolia](https://sepolia.etherscan.io/tx/0x4e0c8cbcac3b7018f43c03c89095f5a1fc2c06b6f4d7e5dcf6bc016f14b04e6f)
 
+**First interactive experiment:** [Agent 9481 Lab](https://domin-focus.github.io/execution-market-research/agent-9481/)
+
 This repository is the durable research record. ChatGPT is a collaborator for exploration, critique, and drafting; conclusions become authoritative only after they are reviewed and committed here.
 
 ## Working loop
@@ -28,6 +30,7 @@ GOVERNANCE.md              Source-of-truth and promotion rules
 .github/ISSUE_TEMPLATE/    One-question-per-issue intake
 research/notes/            Evidence-backed working notes
 research/experiments/      Falsifiable hypotheses and results
+research/executions/       Reviewed execution receipts
 research/weekly/           Weekly synthesis
 architecture/decisions/    Architecture decision records
 papers/                    Drafting pipeline and manuscripts
