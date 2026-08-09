@@ -33,5 +33,6 @@ test("ships public identity and social-preview assets", async () => {
   await Promise.all([
     access(new URL("../public/og.png", import.meta.url)),
     access(new URL("../public/favicon.svg", import.meta.url)),
+    access(new URL("../public/agents/9481/agent-9481.json", import.meta.url)),
   ]);
 });

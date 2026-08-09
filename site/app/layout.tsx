@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://execution-market-research.pages.dev"),
+  metadataBase: new URL("https://execution-market-research.lihao20051404.chatgpt.site"),
   title: {
     default: "Execution Market Research",
     template: "%s · EMR",

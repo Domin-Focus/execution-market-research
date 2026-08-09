@@ -2,7 +2,7 @@
 
 EMR studies how autonomous execution can become measurable, accountable, and economically coordinated.
 
-**Website:** publishing in progress  
+**Website:** [execution-market-research.lihao20051404.chatgpt.site](https://execution-market-research.lihao20051404.chatgpt.site)  
 **Maintainer:** [Domin-Focus](https://github.com/Domin-Focus)  
 **First on-chain agent:** [ERC-8004 Agent 9481 on Ethereum Sepolia](https://sepolia.etherscan.io/tx/0x4e0c8cbcac3b7018f43c03c89095f5a1fc2c06b6f4d7e5dcf6bc016f14b04e6f)
 
