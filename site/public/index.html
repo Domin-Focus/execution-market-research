@@ -163,19 +163,6 @@
   }
   .loop li::before { content: counter(step, decimal-leading-zero); display: block; margin-bottom: 14px; font: 400 12px/1 var(--mono); color: var(--accent); }
 
-  /* Following */
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
-  .card {
-    display: flex; flex-direction: column; padding: 24px; min-height: 248px;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
-    transition: border-color .2s, transform .2s, background .2s;
-  }
-  .card:hover { border-color: rgba(142, 166, 230, .55); background: #191b1f; transform: translateY(-2px); }
-  .card .eyebrow { font-size: 11px; letter-spacing: .12em; line-height: 1.5; }
-  .card h3 { font: 400 20px/1.4 var(--sans); letter-spacing: -.01em; margin-top: 20px; }
-  .card p { margin-top: 8px; font-size: 15px; color: var(--muted); }
-  .card .fork { margin-top: auto; padding-top: 20px; font: 400 12px/1.5 var(--mono); color: var(--faint); overflow-wrap: anywhere; }
-
   /* Footer */
   .contact { padding-bottom: 120px; text-align: center; }
   .contact .cta { margin-top: 32px; }
@@ -188,14 +175,12 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .js .reveal { opacity: 1; transform: none; transition: none; }
-    .btn, .card { transition: none; }
-    .btn:hover, .card:hover { transform: none; }
+    .btn { transition: none; }
+    .btn:hover { transform: none; }
   }
 
   @media (max-width: 900px) {
     .feature { grid-template-columns: 1fr; gap: 36px; }
-    .cards { grid-template-columns: 1fr; }
-    .card { min-height: 0; }
     .loop { grid-template-columns: repeat(2, 1fr); }
     .loop li { min-height: 0; }
     .loop li:last-child { grid-column: 1 / -1; }
@@ -348,35 +333,6 @@
         <li><span class="zh">每周综合进展</span><span class="en">Synthesize weekly</span></li>
         <li><span class="zh">沉淀为论文草稿</span><span class="en">Promote to a paper</span></li>
       </ol>
-    </div>
-  </section>
-
-  <section id="following">
-    <div class="wrap">
-      <div class="heading reveal">
-        <h2><span class="zh">相关开源项目</span><span class="en">Related open source</span></h2>
-        <p><span class="zh">这些是我 fork 的项目，版权和功劳归原作者。</span><span class="en">Projects I've forked. Credit belongs to their original authors.</span></p>
-      </div>
-      <div class="cards">
-        <a class="card reveal" href="https://github.com/Domin-Focus/slime">
-          <p class="eyebrow">Foundation Models</p>
-          <h3>slime</h3>
-          <p><span class="zh">面向 RL 规模化的 LLM 训练框架。</span><span class="en">An LLM training framework for RL scaling.</span></p>
-          <p class="fork">fork of THUDM/slime</p>
-        </a>
-        <a class="card reveal" href="https://github.com/Domin-Focus/rrsi">
-          <p class="eyebrow">Agent Systems</p>
-          <h3>RRSI</h3>
-          <p><span class="zh">对智能体 harness 做正则化的递归自我改进。</span><span class="en">Regularized recursive self-improvement of agent harnesses.</span></p>
-          <p class="fork">fork of google-research/rrsi</p>
-        </a>
-        <a class="card reveal" href="https://github.com/Domin-Focus/inspect_ai">
-          <p class="eyebrow">Reliable AI</p>
-          <h3>Inspect</h3>
-          <p><span class="zh">大语言模型评测框架。</span><span class="en">A framework for large language model evaluations.</span></p>
-          <p class="fork">fork of UKGovernmentBEIS/inspect_ai</p>
-        </a>
-      </div>
     </div>
   </section>
 
