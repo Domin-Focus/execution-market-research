@@ -2,7 +2,7 @@
 
 EMR studies how autonomous execution can become measurable, accountable, and economically coordinated.
 
-**Website:** [domin-focus.github.io/execution-market-research](https://domin-focus.github.io/execution-market-research/)
+**Website:** [domin-focus.github.io/execution-market-research/research](https://domin-focus.github.io/execution-market-research/research/)
 
 **Maintainer:** [Domin-Focus](https://github.com/Domin-Focus)
 

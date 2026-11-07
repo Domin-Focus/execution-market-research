@@ -21,7 +21,7 @@ export default function Agent9481Page() {
   return (
     <main className="lab-page">
       <nav className="nav shell" aria-label="Agent lab navigation">
-        <Link className="brand" href="/" aria-label="Return to EMR home">
+        <Link className="brand" href="/research/" aria-label="Return to EMR home">
           <span className="brand-mark">EMR</span>
           <span>Execution Market Research</span>
         </Link>
@@ -128,7 +128,7 @@ export default function Agent9481Page() {
           <p>Simulation only. No trading authority. No funds at risk.</p>
         </div>
         <div className="footer-links">
-          <Link href="/">EMR home</Link>
+          <Link href="/research/">EMR home</Link>
           <a href={`${githubUrl}/blob/main/research/experiments/001-task-backed-reputation.md`} target="_blank" rel="noreferrer">Experiment design <Arrow /></a>
         </div>
       </footer>

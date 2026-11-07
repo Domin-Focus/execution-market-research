@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dominic Lee</title>
+<meta name="description" content="Dominic Lee — Foundation Models · Agent Systems · Reliable AI">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233d5a94'/%3E%3Ctext x='16' y='21.5' font-family='Arial' font-size='14' fill='white' text-anchor='middle'%3EDL%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Fragment+Mono&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0a0a0a;
+    --surface: #151618;
+    --surface-2: #1e2024;
+    --sidebar: #2a2e36;
+    --line: rgba(255, 255, 255, .1);
+    --text: #fff;
+    --muted: rgba(255, 255, 255, .58);
+    --faint: rgba(255, 255, 255, .42);
+    --accent: #8ea6e6;
+    --sans: "DM Sans", system-ui, -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    --display: Montserrat, "DM Sans", system-ui, -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    --mono: "Fragment Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 400 16px/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { list-style: none; padding: 0; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  /* One language is visible at a time; Chinese is the no-JS default. */
+  html[data-lang="zh"] .en, html[data-lang="en"] .zh { display: none !important; }
+
+  .wrap { width: min(1088px, 100% - 48px); margin-inline: auto; }
+
+  /* Nav */
+  nav {
+    position: fixed; inset: 0 0 auto; z-index: 10;
+    transition: background .3s, border-color .3s;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled {
+    background: rgba(10, 10, 10, .72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 8px; font: 500 17px/1 var(--display); letter-spacing: -.02em; white-space: nowrap; }
+  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .lang { display: none; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255, 255, 255, .04); }
+  .js .lang { display: flex; }
+  .lang button { min-width: 38px; height: 26px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; color: var(--muted); }
+  .lang button[aria-pressed="true"] { background: rgba(255, 255, 255, .22); color: #fff; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 44px; padding: 0 22px; border-radius: 999px;
+    font-size: 15px; font-weight: 500; white-space: nowrap;
+    transition: transform .2s, background .2s, border-color .2s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: #fff; color: #111; }
+  .btn-ghost { border: 1px solid rgba(255, 255, 255, .22); background: rgba(255, 255, 255, .05); }
+  .btn-ghost:hover { background: rgba(255, 255, 255, .1); }
+  .btn-small { height: 34px; padding: 0 14px; font-size: 13px; }
+  .btn svg { width: 16px; height: 16px; flex: none; }
+
+  /* Hero */
+  .hero { position: relative; padding: 136px 0 0; text-align: center; isolation: isolate; }
+  .hero::before {
+    content: ""; position: absolute; z-index: -1; inset: 0 0 auto; height: 900px;
+    background:
+      radial-gradient(44% 46% at 62% 24%, rgba(84, 118, 186, .62), transparent 72%),
+      radial-gradient(52% 58% at 34% 12%, rgba(52, 76, 130, .78), transparent 74%),
+      linear-gradient(to bottom, #1d2a48, var(--bg) 92%);
+  }
+  .eyebrow { font: 400 12px/1 var(--mono); letter-spacing: .24em; color: var(--muted); text-transform: uppercase; }
+  h1, h2 { font-family: var(--display); font-weight: 400; color: #fff; }
+  h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.35; letter-spacing: -.02em; margin-top: 24px; }
+  h1 small { display: block; font-size: clamp(24px, 4.4vw, 40px); font-weight: 400; }
+  .lede { max-width: 620px; margin: 28px auto 0; font-size: 17px; color: var(--muted); text-wrap: balance; }
+  .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 36px; }
+
+  /* Session window */
+  .window {
+    display: grid; grid-template-columns: 220px 1fr;
+    margin-top: 64px; min-height: 420px; text-align: left;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    overflow: hidden; box-shadow: 0 40px 100px rgba(0, 0, 0, .55);
+  }
+  .side { background: var(--sidebar); padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .lights { display: flex; gap: 7px; padding: 2px 6px 18px; }
+  .lights i { width: 11px; height: 11px; border-radius: 50%; }
+  .lights i:nth-child(1) { background: #ec6a5e; }
+  .lights i:nth-child(2) { background: #f4bf4f; }
+  .lights i:nth-child(3) { background: #61c554; }
+  .side-label { padding: 0 10px 8px; font: 400 11px/1 var(--mono); letter-spacing: .08em; color: var(--faint); text-transform: uppercase; }
+  .side [role="tablist"] { display: flex; flex-direction: column; gap: 2px; }
+  .side button {
+    width: 100%; padding: 8px 10px; border-radius: 8px; text-align: left;
+    font-size: 14px; color: var(--muted); white-space: nowrap;
+    transition: background .15s, color .15s;
+  }
+  .side button:hover { background: rgba(255, 255, 255, .06); color: #fff; }
+  .side button[aria-selected="true"] { background: rgba(255, 255, 255, .13); color: #fff; }
+  .panel { padding: 24px 28px 32px; min-width: 0; }
+  .js .panel[hidden] { display: none; }
+  .panel-title { padding-bottom: 14px; margin-bottom: 22px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  .ask { width: fit-content; max-width: 85%; margin: 0 0 22px auto; padding: 8px 16px; border-radius: 18px; background: var(--surface-2); font-size: 15px; }
+  .answer { font-size: 15px; color: rgba(255, 255, 255, .86); }
+  .answer p + p, .answer p + ul { margin-top: 12px; }
+  .answer ul { display: grid; gap: 8px; }
+  .answer li { position: relative; padding-left: 16px; }
+  .answer li::before { content: ""; position: absolute; left: 2px; top: .68em; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+  .answer a { color: var(--accent); }
+  .answer a:hover { text-decoration: underline; }
+
+  /* Sections */
+  section { padding-top: 136px; }
+  .heading { text-align: center; }
+  h2 { font-size: clamp(27px, 4.4vw, 36px); line-height: 1.45; letter-spacing: -.02em; }
+  .heading p { max-width: 580px; margin: 16px auto 0; color: var(--muted); }
+
+  /* Featured project */
+  .feature {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    margin-top: 64px;
+  }
+  .feature h3 { font: 400 26px/1.35 var(--display); letter-spacing: -.01em; margin-top: 16px; }
+  .feature-copy > p { margin-top: 16px; color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .scope { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+  .scope header { display: flex; justify-content: space-between; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--line); font: 400 12px/1.4 var(--mono); color: var(--faint); }
+  .scope li + li { border-top: 1px solid rgba(255, 255, 255, .06); }
+  .scope a { display: block; padding: 16px 20px; transition: background .2s; }
+  .scope a:hover { background: rgba(255, 255, 255, .04); }
+  .scope .kind { display: flex; justify-content: space-between; gap: 12px; font: 400 12px/1.5 var(--mono); color: var(--accent); }
+  .scope .status { color: var(--faint); text-align: right; }
+  .scope strong { display: block; margin-top: 6px; font-size: 15px; font-weight: 400; }
+
+  /* Working loop */
+  .loop { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 56px; counter-reset: step; }
+  .loop li {
+    counter-increment: step; padding: 16px 14px; min-height: 104px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    font-size: 14px; line-height: 1.45;
+  }
+  .loop li::before { content: counter(step, decimal-leading-zero); display: block; margin-bottom: 14px; font: 400 12px/1 var(--mono); color: var(--accent); }
+
+  /* Following */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+  .card {
+    display: flex; flex-direction: column; padding: 24px; min-height: 248px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    transition: border-color .2s, transform .2s, background .2s;
+  }
+  .card:hover { border-color: rgba(142, 166, 230, .55); background: #191b1f; transform: translateY(-2px); }
+  .card .eyebrow { font-size: 11px; letter-spacing: .12em; line-height: 1.5; }
+  .card h3 { font: 400 20px/1.4 var(--sans); letter-spacing: -.01em; margin-top: 20px; }
+  .card p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+  .card .fork { margin-top: auto; padding-top: 20px; font: 400 12px/1.5 var(--mono); color: var(--faint); overflow-wrap: anywhere; }
+
+  /* Footer */
+  .contact { padding-bottom: 120px; text-align: center; }
+  .contact .cta { margin-top: 32px; }
+  footer { border-top: 1px solid var(--line); padding: 24px 0; font-size: 13px; color: var(--faint); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+  /* Scroll reveal: only armed when JS runs, so content is never stranded hidden. */
+  .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .btn, .card { transition: none; }
+    .btn:hover, .card:hover { transform: none; }
+  }
+
+  @media (max-width: 900px) {
+    .feature { grid-template-columns: 1fr; gap: 36px; }
+    .cards { grid-template-columns: 1fr; }
+    .card { min-height: 0; }
+    .loop { grid-template-columns: repeat(2, 1fr); }
+    .loop li { min-height: 0; }
+    .loop li:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 680px) {
+    .wrap { width: calc(100% - 32px); }
+    .hero { padding-top: 112px; }
+    .lede { font-size: 16px; }
+    section { padding-top: 96px; }
+    .window { grid-template-columns: 1fr; margin-top: 48px; min-height: 0; }
+    .side { padding: 14px 12px 10px; }
+    .lights { padding-bottom: 12px; }
+    .side-label { display: none; }
+    .side [role="tablist"] { flex-direction: row; overflow-x: auto; scrollbar-width: none; }
+    .side button { width: auto; flex: none; }
+    .panel { padding: 18px 16px 24px; min-height: 380px; }
+    .nav-github { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">Dominic Lee</a>
+    <div class="nav-right">
+      <a class="btn btn-ghost btn-small nav-github" href="https://github.com/Domin-Focus">GitHub</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-set-lang="zh" aria-pressed="true">中文</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">✦ <span class="zh">个人主页</span><span class="en">Personal site</span></p>
+      <h1>Dominic Lee
+        <small class="zh">让自主执行清晰可辨。</small>
+        <small class="en">Make autonomous execution legible.</small>
+      </h1>
+      <p class="lede">Foundation Models · Agent Systems · Reliable AI</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#research"><span class="zh">查看研究</span><span class="en">See the research</span></a>
+        <a class="btn btn-ghost" href="https://github.com/Domin-Focus">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </div>
+
+      <div class="window">
+        <div class="side">
+          <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
+          <p class="side-label"><span class="zh">话题</span><span class="en">Topics</span></p>
+          <div role="tablist" aria-label="Topics">
+            <button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="true"><span class="zh">关于我</span><span class="en">About</span></button>
+            <button type="button" role="tab" id="tab-question" aria-controls="panel-question" aria-selected="false" tabindex="-1"><span class="zh">研究问题</span><span class="en">The question</span></button>
+            <button type="button" role="tab" id="tab-method" aria-controls="panel-method" aria-selected="false" tabindex="-1"><span class="zh">工作方式</span><span class="en">How I work</span></button>
+          </div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-about" aria-labelledby="tab-about">
+          <p class="panel-title"><span class="zh">关于我</span><span class="en">About</span></p>
+          <p class="ask"><span class="zh">你在做什么？</span><span class="en">What do you work on?</span></p>
+          <div class="answer">
+            <p class="zh">我关注基础模型、智能体系统和可靠 AI。</p>
+            <p class="en">I focus on foundation models, agent systems, and reliable AI.</p>
+            <p class="zh">我维护 Execution Market Research，研究智能体如何在被授予的权限内行动、留下可验证的证据，并靠可度量的贡献而不是自我宣称赢得信任。</p>
+            <p class="en">I maintain Execution Market Research, which studies how agents can act under delegated authority, produce verifiable evidence, and earn trust from measurable contribution, not self-claims.</p>
+          </div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-question" aria-labelledby="tab-question" hidden>
+          <p class="panel-title"><span class="zh">研究问题</span><span class="en">The question</span></p>
+          <p class="ask"><span class="zh">你想回答什么问题？</span><span class="en">What are you trying to answer?</span></p>
+          <div class="answer">
+            <p class="zh">在执行成为市场之前，它必须先变得可度量、可比较、可问责。</p>
+            <p class="en">Before execution becomes a market, it must become measurable, comparable, and accountable.</p>
+            <ul>
+              <li><span class="zh">至少需要哪些证据，两次自主执行才能在经济上比较？</span><span class="en">What minimum evidence makes two autonomous executions economically comparable?</span></li>
+              <li><span class="zh">选择智能体时，基于任务的贡献记录是否优于综合声誉？</span><span class="en">Does task-backed contribution history outperform aggregate reputation when selecting agents?</span></li>
+              <li><span class="zh">哪些执行证据应该上链，哪些必须保持私密或留在链下？</span><span class="en">Which execution evidence belongs on-chain, and which must remain private or off-chain?</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-method" aria-labelledby="tab-method" hidden>
+          <p class="panel-title"><span class="zh">工作方式</span><span class="en">How I work</span></p>
+          <p class="ask"><span class="zh">结论如何算数？</span><span class="en">What makes a conclusion count?</span></p>
+          <div class="answer">
+            <p class="zh">想法从 issue 开始，证据保存在有版本记录的笔记和实验里，决策都留有记录，稳定的结论才进入论文。</p>
+            <p class="en">Ideas begin as issues. Evidence lives in versioned notes and experiments. Decisions are recorded. Stable findings graduate into papers.</p>
+            <p class="zh">完整记录见 <a href="https://github.com/Domin-Focus/execution-market-research">execution-market-research</a>。</p>
+            <p class="en">The full record is in <a href="https://github.com/Domin-Focus/execution-market-research">execution-market-research</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="heading reveal">
+        <h2><span class="zh">GitHub 是研究账本。</span><span class="en">GitHub is the research ledger.</span></h2>
+      </div>
+
+      <div class="feature">
+        <div class="feature-copy reveal">
+          <p class="eyebrow"><span class="zh">主要项目</span><span class="en">Main project</span></p>
+          <h3>Execution Market Research</h3>
+          <p class="zh">研究智能体如何在被授予的权限内行动、留下可验证的证据，并靠可度量的贡献而不是自我宣称赢得信任。</p>
+          <p class="en">Studying how agents can act under delegated authority, produce verifiable evidence, and earn trust from measurable contribution, not self-claims.</p>
+          <div class="links">
+            <a class="btn btn-primary btn-small" href="research/"><span class="zh">研究网站</span><span class="en">Website</span></a>
+            <a class="btn btn-ghost btn-small" href="agent-9481/">Agent 9481 Lab</a>
+            <a class="btn btn-ghost btn-small" href="https://github.com/Domin-Focus/execution-market-research"><span class="zh">仓库</span><span class="en">Repository</span></a>
+          </div>
+        </div>
+        <div class="scope reveal">
+          <header><span>EMR</span><span class="zh">公开成果</span><span class="en">Public outputs</span></header>
+          <ul>
+            <li><a href="https://github.com/Domin-Focus/execution-market-research/blob/main/papers/paper-0.md">
+              <span class="kind"><span>Paper 0</span><span class="status"><span class="zh">工作草稿</span><span class="en">Working draft</span></span></span>
+              <strong>From Intelligence to Autonomous Execution</strong>
+            </a></li>
+            <li><a href="https://github.com/Domin-Focus/execution-market-research/blob/main/specifications/execution-receipt-v0.1.md">
+              <span class="kind"><span>Specification 001</span><span class="status">v0.1</span></span>
+              <strong>Execution receipt</strong>
+            </a></li>
+            <li><a href="https://github.com/Domin-Focus/execution-market-research/blob/main/research/experiments/001-task-backed-reputation.md">
+              <span class="kind"><span>Experiment 001</span><span class="status"><span class="zh">已提出，待运行</span><span class="en">Proposed</span></span></span>
+              <strong>Task-backed reputation</strong>
+            </a></li>
+            <li><a href="https://sepolia.etherscan.io/tx/0x4e0c8cbcac3b7018f43c03c89095f5a1fc2c06b6f4d7e5dcf6bc016f14b04e6f">
+              <span class="kind"><span>Agent #9481</span><span class="status"><span class="zh">Sepolia 测试网</span><span class="en">Sepolia testnet</span></span></span>
+              <strong><span class="zh">ERC-8004 身份已注册</span><span class="en">ERC-8004 identity registered</span></strong>
+            </a></li>
+          </ul>
+        </div>
+      </div>
+
+      <ol class="loop reveal">
+        <li><span class="zh">选定一个问题</span><span class="en">Select a question</span></li>
+        <li><span class="zh">开一个 issue</span><span class="en">Open an issue</span></li>
+        <li><span class="zh">记录证据与推理</span><span class="en">Capture evidence</span></li>
+        <li><span class="zh">写假设与实验</span><span class="en">Write the experiment</span></li>
+        <li><span class="zh">用 ADR 记录决策</span><span class="en">Record the decision</span></li>
+        <li><span class="zh">每周综合进展</span><span class="en">Synthesize weekly</span></li>
+        <li><span class="zh">沉淀为论文草稿</span><span class="en">Promote to a paper</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="following">
+    <div class="wrap">
+      <div class="heading reveal">
+        <h2><span class="zh">相关开源项目</span><span class="en">Related open source</span></h2>
+        <p><span class="zh">这些是我 fork 的项目，版权和功劳归原作者。</span><span class="en">Projects I've forked. Credit belongs to their original authors.</span></p>
+      </div>
+      <div class="cards">
+        <a class="card reveal" href="https://github.com/Domin-Focus/slime">
+          <p class="eyebrow">Foundation Models</p>
+          <h3>slime</h3>
+          <p><span class="zh">面向 RL 规模化的 LLM 训练框架。</span><span class="en">An LLM training framework for RL scaling.</span></p>
+          <p class="fork">fork of THUDM/slime</p>
+        </a>
+        <a class="card reveal" href="https://github.com/Domin-Focus/rrsi">
+          <p class="eyebrow">Agent Systems</p>
+          <h3>RRSI</h3>
+          <p><span class="zh">对智能体 harness 做正则化的递归自我改进。</span><span class="en">Regularized recursive self-improvement of agent harnesses.</span></p>
+          <p class="fork">fork of google-research/rrsi</p>
+        </a>
+        <a class="card reveal" href="https://github.com/Domin-Focus/inspect_ai">
+          <p class="eyebrow">Reliable AI</p>
+          <h3>Inspect</h3>
+          <p><span class="zh">大语言模型评测框架。</span><span class="en">A framework for large language model evaluations.</span></p>
+          <p class="fork">fork of UKGovernmentBEIS/inspect_ai</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap reveal">
+      <h2><span class="zh">对同样的问题感兴趣？</span><span class="en">Thinking about the same questions?</span></h2>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/Domin-Focus/execution-market-research/issues/new?template=research-question.md&amp;title=RQ%3A+"><span class="zh">提出一个研究问题</span><span class="en">Propose a research question</span></a>
+        <a class="btn btn-ghost" href="https://github.com/Domin-Focus">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Dominic Lee</span>
+    <a href="https://github.com/Domin-Focus">github.com/Domin-Focus</a>
+  </div>
+</footer>
+
+<script>
+  // Language toggle. Storage is a convenience only: the page works if it throws.
+  const root = document.documentElement;
+  const langButtons = document.querySelectorAll('[data-set-lang]');
+  function setLang(lang, remember) {
+    root.dataset.lang = lang;
+    root.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    langButtons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setLang === lang)));
+    if (remember) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+  }
+  langButtons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang, true)));
+  try {
+    const saved = localStorage.getItem('lang');
+    if (saved === 'zh' || saved === 'en') setLang(saved, false);
+  } catch (e) {}
+
+  // Session window tabs.
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  function selectTab(tab) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectTab(tab));
+    tab.addEventListener('keydown', e => {
+      const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (!step) return;
+      e.preventDefault();
+      const next = tabs[(i + step + tabs.length) % tabs.length];
+      selectTab(next);
+      next.focus();
+    });
+  });
+
+  // Nav background and scroll reveal.
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
