@@ -53,3 +53,7 @@ Keep implementation choices such as ERC-8004, x402, and adjacent standards compo
 ## Website publishing
 
 The website source lives in [`site/`](site/) and is deployed to GitHub Pages from `main`. Every accepted website change is therefore reviewable and versioned alongside the research it presents.
+
+## License
+
+Released under the [MIT License](LICENSE).
