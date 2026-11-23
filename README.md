@@ -32,6 +32,7 @@ research/notes/            Evidence-backed working notes
 research/experiments/      Falsifiable hypotheses and results
 research/executions/       Reviewed execution receipts
 research/weekly/           Weekly synthesis
+architecture/              Architecture assessments
 architecture/decisions/    Architecture decision records
 papers/                    Drafting pipeline and manuscripts
 specifications/             Versioned EMR schemas
@@ -49,6 +50,10 @@ templates/                 Reusable research templates
 - Coordination and settlement
 
 Keep implementation choices such as ERC-8004, x402, and adjacent standards composable with EMR rather than treating them as EMR's thesis.
+
+## OpenEM execution research
+
+[OpenEM-01 M1](architecture/openem-m1-architecture.md) proposes the architecture contract for a simulated, verifiable execution workflow: executors bid, one eligible executor is selected, an independent authorization scopes the trade, and a deterministic safety kernel executes and settles it in a simulated CEX before emitting a receipt. It is a proposal for review; implementation (M2) begins only after review. The boundary decisions are recorded in [ADR-0001](architecture/decisions/0001-openem-execution-boundaries.md).
 
 ## Website publishing
 
